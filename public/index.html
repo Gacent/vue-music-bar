@@ -6,6 +6,35 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>vue-music-bar</title>
+    <script>
+      (function (f, j) {
+        var i = document, d = window;
+        var b = i.documentElement;
+        var c;
+  
+        function g() {
+          var k = b.getBoundingClientRect().width;
+          if (!j) {
+            j = 1080
+          }
+          if (k > j) {
+            k = j
+          }
+          var l = k * 100 / f;
+          b.style.fontSize = Math.max(80, (l > 100 ? 100 : l) * 2) + "px";
+        }
+        g();
+        d.addEventListener("pageshow", function (k) {
+          if (k.persisted) {
+            clearTimeout(c);
+            c = setTimeout(g, 300)
+          }
+        }, false)
+        window.addEventListener('resize', function () {
+          g();
+        })
+      })(750, 1080);
+    </script>
   </head>
   <body>
     <noscript>
